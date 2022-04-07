@@ -35,7 +35,7 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class Fintecture extends AbstractMethod
 {
-    const MODULE_VERSION = '1.2.6';
+    const MODULE_VERSION = '1.2.7';
     const PAYMENT_FINTECTURE_CODE = 'fintecture';
     const CONFIG_PREFIX = 'payment/fintecture/';
 
