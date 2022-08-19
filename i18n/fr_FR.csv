@@ -63,3 +63,5 @@
 "In minutes. Minimum value: 1", "En minutes. Valeur minimum 1"
 "Module version:", "Version du module :"
 "This section is intended for advanced users. Changing the settings may impact the proper functioning of your system.", "Cette section est destinée aux utilisateurs avancés. La modification des paramètres peut avoir un impact sur le bon fonctionnement de votre système."
+"Invoicing", "Facturation"
+"Enable invoice generation for paid orders", "Activer la génération de facture pour les commandes payées"

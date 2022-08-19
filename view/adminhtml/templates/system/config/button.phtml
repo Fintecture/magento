@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Fintecture\Payment\Block\System\Config\Button;
@@ -6,8 +7,11 @@ use Fintecture\Payment\Block\System\Config\Button;
 /** @var Button $block */
 echo $block->getButtonHtml();
 ?>
-<div id="connect-message"></div>
+<div id="connection-test-result" class="message">
+    <span class="message-text">
+        <strong></strong>
+    </span>
+</div>
 <script>
-    const configurationAjaxUrl = '<?= $block->getCustomUrl() ?>?isAjax=true&form_key=<?= $block->getFormKey() ?>';
+    const connectionTestUrl = '<?php echo $block->getCustomUrl(); ?>';
 </script>
-

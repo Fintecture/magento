@@ -22,14 +22,11 @@
     display: none;
 }
 
-.fintecture-admin-section #connect-message {
-    margin-top: 10px;
+.fintecture-admin-section #connection-test-result {
+    display: none;
 }
 
-.fintecture-admin-section #connect-message .error {
-    color: #FF0000;
-}
-
-.fintecture-admin-section #connect-message .success {
-    color: #00FF12;
+.fintecture-admin-section #connection-test-result.message-error,
+.fintecture-admin-section #connection-test-result.message-success {
+    margin-top: 20px;
 }
