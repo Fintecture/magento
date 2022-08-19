@@ -18,6 +18,7 @@
                 <payment_failed_status>canceled</payment_failed_status>
                 <expiration_active>0</expiration_active>
                 <expiration_after>10</expiration_after>
+                <invoicing_active>1</invoicing_active>
                 <payment_us_fintecture_general_specificcountry>FR</payment_us_fintecture_general_specificcountry>
                 <payment_us_fintecture_general_allowspecific>1</payment_us_fintecture_general_allowspecific>
             </fintecture>

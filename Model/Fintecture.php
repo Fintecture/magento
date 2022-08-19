@@ -40,11 +40,12 @@ use Magento\Sales\Model\Service\InvoiceService;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
+/** @phpstan-ignore-next-line : we will refactor the plugin without AbstractMethod */
 class Fintecture extends AbstractMethod
 {
     public const CODE = 'fintecture';
     public const CONFIG_PREFIX = 'payment/fintecture/';
-    public const MODULE_VERSION = '1.4.0';
+    public const MODULE_VERSION = '1.5.0';
 
     private const PAYMENT_COMMUNICATION = 'FINTECTURE-';
     private const REFUND_COMMUNICATION = 'REFUND FINTECTURE-';
@@ -151,6 +152,7 @@ class Fintecture extends AbstractMethod
         $this->invoiceRepository = $invoiceRepository;
         $this->creditmemoRepository = $creditmemoRepository;
 
+        /** @phpstan-ignore-next-line : we will refactor the plugin without AbstractMethod */
         parent::__construct(
             $context,
             $registry,
@@ -205,7 +207,7 @@ class Fintecture extends AbstractMethod
 
         $this->orderSender->send($order);
 
-        if ($order->canInvoice()) {
+        if ($order->canInvoice() && $this->getInvoicingActive()) {
             // Re-enable email sending
             $order->setCanSendNewEmailFlag(true);
             $this->orderRepository->save($order);
@@ -456,26 +458,28 @@ class Fintecture extends AbstractMethod
             ? 'https://api-sandbox.fintecture.com/' : 'https://api.fintecture.com/';
     }
 
-    public function getAppPrivateKey(): ?string
-    {
-        $privateKey = $this->_scopeConfig->getValue(self::CONFIG_PREFIX . 'custom_file_upload_' . $this->environment, ScopeInterface::SCOPE_STORE);
-        return $privateKey ? $this->encryptor->decrypt($privateKey) : null;
-    }
-
     public function getShopName(): ?string
     {
         return $this->_scopeConfig->getValue('general/store_information/name', ScopeInterface::SCOPE_STORE);
     }
 
-    public function getAppId(?string $environment = null): ?string
+    public function getAppId(string $environment = null): ?string
     {
         $environment = $environment ?: $this->environment;
         return $this->_scopeConfig->getValue(static::CONFIG_PREFIX . 'fintecture_app_id_' . $environment, ScopeInterface::SCOPE_STORE);
     }
 
-    public function getAppSecret(): ?string
+    public function getAppSecret(string $environment = null, string $scope = ScopeInterface::SCOPE_STORE, int $scopeId = null): ?string
     {
-        return $this->_scopeConfig->getValue(static::CONFIG_PREFIX . 'fintecture_app_secret_' . $this->environment, ScopeInterface::SCOPE_STORE);
+        $environment = $environment ?: $this->environment;
+        return $this->_scopeConfig->getValue(static::CONFIG_PREFIX . 'fintecture_app_secret_' . $environment, $scope, $scopeId);
+    }
+
+    public function getAppPrivateKey(string $environment = null, string $scope = ScopeInterface::SCOPE_STORE, int $scopeId = null): ?string
+    {
+        $environment = $environment ?: $this->environment;
+        $privateKey = $this->_scopeConfig->getValue(self::CONFIG_PREFIX . 'custom_file_upload_' . $environment, $scope, $scopeId);
+        return $privateKey ? $this->encryptor->decrypt($privateKey) : null;
     }
 
     public function isRewriteModeActive(): bool
@@ -506,6 +510,11 @@ class Fintecture extends AbstractMethod
     public function getExpirationAfter(): ?int
     {
         return (int) $this->_scopeConfig->getValue('payment/fintecture/expiration_after', ScopeInterface::SCOPE_STORE);
+    }
+
+    public function getInvoicingActive(): ?bool
+    {
+        return $this->_scopeConfig->isSetFlag('payment/fintecture/invoicing_active', ScopeInterface::SCOPE_STORE);
     }
 
     public function getPaymentGatewayRedirectUrl(): string

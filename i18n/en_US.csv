@@ -63,3 +63,5 @@
 "In minutes. Minimum value: 1", "In minutes. Minimum value: 1"
 "Module version:", "Module version:"
 "This section is intended for advanced users. Changing the settings may impact the proper functioning of your system.", "This section is intended for advanced users. Changing the settings may impact the proper functioning of your system."
+"Invoicing", "Invoicing"
+"Enable invoice generation for paid orders", "Enable invoice generation for paid orders"

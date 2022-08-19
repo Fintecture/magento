@@ -161,6 +161,16 @@
                             <validate>validate-number validate-greater-than-zero</validate>
                         </field>
                     </group>
+
+                    <group id="fintecture_advanced_invoicing" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Invoicing</label>
+                        
+                        <field id="invoicing_active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Enable invoice generation for paid orders</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/fintecture/invoicing_active</config_path>
+                        </field>
+                    </group>
                 </group>
                 <!-- End Advanced Options -->
 
