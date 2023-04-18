@@ -53,7 +53,7 @@ class Fintecture extends AbstractMethod
 {
     public const CODE = 'fintecture';
     public const CONFIG_PREFIX = 'payment/fintecture/';
-    public const MODULE_VERSION = '2.2.7';
+    public const MODULE_VERSION = '2.2.8';
 
     private const PAYMENT_COMMUNICATION = 'FINTECTURE-';
     private const REFUND_COMMUNICATION = 'REFUND FINTECTURE-';
@@ -280,6 +280,10 @@ class Fintecture extends AbstractMethod
         $order->setTotalDue(max($order->getTotalDue() - $lastTransactionAmount, 0));
         $order->setBaseTotalDue(max($order->getBaseTotalDue() - $lastTransactionAmount, 0));
 
+        // Re-enable email sending (disabled in a SubmitObserver)
+        $order->setCanSendNewEmailFlag(true);
+        $this->orderSender->send($order);
+
         $this->orderRepository->save($order);
 
         $this->changeOrderState($order, $params, $statuses, $webhook);
@@ -317,12 +321,6 @@ class Fintecture extends AbstractMethod
         // Send invoice if order paid
         if ($this->fintectureHelper->isStatusAlreadyFinal($order)
             && $order->canInvoice() && $this->getInvoicingActive()) {
-            $this->orderSender->send($order);
-
-            // Re-enable email sending (disabled in a SubmitObserver)
-            $order->setCanSendNewEmailFlag(true);
-            $this->orderRepository->save($order);
-
             $invoice = $this->invoiceService->prepareInvoice($order);
             $invoice->setTransactionId($params['sessionId']);
             $invoice->register();
