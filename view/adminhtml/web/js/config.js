@@ -104,13 +104,9 @@ requirejs(['jquery', 'mage/translate'], function ($, $t) {
                 window.scrollTo(pos[0], pos[1] - 45);
             }
         }
-        
-        const it_st_input = document.querySelector('input[id$="fintecture_design_options_checkout_design_selectionist"]');
-        const it_st_short_input = document.querySelector('input[id$="fintecture_design_options_checkout_design_selectionist_short"]');
-        const it_st_long_input = document.querySelector('input[id$="fintecture_design_options_checkout_design_selectionist_long"]');
-        
-        it_st_input.disabled = true;
-        it_st_short_input.style.marginLeft = '15px';
-        it_st_long_input.style.marginLeft = '15px';
+
+        $('input[id$="fintecture_design_options_checkout_design_selectionist"]').prop('disabled', true);
+        $('input[id$="fintecture_design_options_checkout_design_selectionist_short"]').css({ marginLeft: '15px' });
+        $('input[id$="fintecture_design_options_checkout_design_selectionist_long"]').css({ marginLeft: '15px' });
     });
 });
