@@ -52,6 +52,7 @@ abstract class WebhookAbstract implements CsrfAwareActionInterface
         'Refund',
         'BuyNowPayLater',
         'ManualTransfer',
+        'RequestToPay'
     ];
 
     public function __construct(
