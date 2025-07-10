@@ -17,7 +17,7 @@ $status = $block->getPaymentStatus();
     <?php elseif ($status === 'payment_error' || $status === 'cms_internal_error'): ?>
         <div class="fintecture-alert fintecture-alert-danger">
             <img src="<?php echo $block->getViewFileUrl('Fintecture_Payment::images/error.svg'); ?>">
-            <p><?php echo __('A technical error has occurred. Please contact <a href="%1" target="_blank">the merchant</a> or Fintecture by email at <a href="mailto:%2">%2</a> or via <a href="%3" target="_blank">chat</a>.', $block->getUrl('contact'), 'support@fintecture.com', 'https:///help.fintecture.com'); ?></p>
+            <p><?php echo __('A technical error has occurred. Please contact <a href="%1" target="_blank">the merchant</a> or Fintecture by email at <a href="mailto:%2">%2</a> or via <a href="%3" target="_blank">chat</a>.', $block->getUrl('contact'), 'support@fintecture.com', 'https://help.fintecture.com'); ?></p>
         </div>
     <?php endif ?>
 <?php endif ?>
