@@ -6,10 +6,10 @@ use Magento\Payment\Gateway\Config\Config as BaseConfig;
 
 class BnplConfig extends BaseConfig
 {
-    const CODE = 'fintecture_bnpl';
+    public const CODE = 'fintecture_bnpl';
 
-    const KEY_ACTIVE = 'active';
-    const KEY_RECOMMEND_BNPL_BADGE = 'recommend_bnpl_badge';
+    public const KEY_ACTIVE = 'active';
+    public const KEY_RECOMMEND_BNPL_BADGE = 'recommend_bnpl_badge';
 
     public function isActive(): bool
     {

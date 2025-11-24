@@ -45,26 +45,6 @@
                 <first_position_amount>0</first_position_amount>
                 <custom_reconciliation_field_active>0</custom_reconciliation_field_active>
             </fintecture>
-            <fintecture_bnpl>
-                <debug>0</debug>
-                <active>0</active>
-                <model>FintectureBnplFacade</model>
-                <payment_action>initialize</payment_action>
-                <can_use_internal>1</can_use_internal>
-                <can_use_checkout>1</can_use_checkout>
-                <can_initialize>1</can_initialize>
-                <can_refund>1</can_refund>
-                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
-                <is_gateway>1</is_gateway>
-                <is_offline>0</is_offline>
-                <order_status>new</order_status>
-                <currency>EUR</currency>
-                <sort_order>1</sort_order>
-                <title>Fintecture</title>
-                <allowspecific>0</allowspecific>
-                <specificcountry>FR</specificcountry>
-                <recommend_bnpl_badge>0</recommend_bnpl_badge>
-            </fintecture_bnpl>
         </payment>
     </default>
 </config>

@@ -8,8 +8,8 @@ use Magento\Framework\Data\OptionSourceInterface;
 
 class AlternativeMethod implements OptionSourceInterface
 {
-    const ALTERNATIVE_METHOD_QRCODE = 'qrcode';
-    const ALTERNATIVE_METHOD_SEND = 'send';
+    public const ALTERNATIVE_METHOD_QRCODE = 'qrcode';
+    public const ALTERNATIVE_METHOD_SEND = 'send';
 
     public function toOptionArray(): array
     {
