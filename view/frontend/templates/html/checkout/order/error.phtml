@@ -6,18 +6,41 @@ $status = $block->getPaymentStatus();
 <?php if (!empty($status)): ?>
     <?php if ($status === 'sca_required'): ?>
         <div class="fintecture-alert fintecture-alert-warning">
-            <img src="<?php echo $block->getViewFileUrl('Fintecture_Payment::images/warning.svg'); ?>">
-            <p><?php echo __('The payment has been cancelled and the transaction could not be completed.'); ?></p>
+            <img src="<?= $block->escapeUrl(
+                $block->getViewFileUrl('Fintecture_Payment::images/warning.svg')
+            ) ?>">
+            <p>
+                <?= $block->escapeHtml(__(
+                    'The payment has been cancelled and the transaction could not be completed.'
+                )) ?>
+            </p>
         </div>
     <?php elseif ($status === 'payment_unsuccessful'): ?>
         <div class="fintecture-alert fintecture-alert-danger">
-            <img src="<?php echo $block->getViewFileUrl('Fintecture_Payment::images/error.svg'); ?>">
-            <p><?php echo __('The payment has failed. Please select another bank or another payment method.'); ?></p>
+            <img src="<?= $block->escapeUrl(
+                $block->getViewFileUrl('Fintecture_Payment::images/error.svg')
+            ) ?>">
+            <p>
+                <?= $block->escapeHtml(__(
+                    'The payment has failed. Please select another bank or another payment method.'
+                )) ?>
+            </p>
         </div>
     <?php elseif ($status === 'payment_error' || $status === 'cms_internal_error'): ?>
         <div class="fintecture-alert fintecture-alert-danger">
-            <img src="<?php echo $block->getViewFileUrl('Fintecture_Payment::images/error.svg'); ?>">
-            <p><?php echo __('A technical error has occurred. Please contact <a href="%1" target="_blank">the merchant</a> or Fintecture by email at <a href="mailto:%2">%2</a> or via <a href="%3" target="_blank">chat</a>.', $block->getUrl('contact'), 'support@fintecture.com', 'https://help.fintecture.com'); ?></p>
+            <img src="<?= $block->escapeUrl(
+                $block->getViewFileUrl('Fintecture_Payment::images/error.svg')
+            ) ?>">
+            <p>
+                <?= /* @noEscape */ __(
+                    'A technical error has occurred. Please contact '
+                    . '<a href="%1" target="_blank">the merchant</a> or Fintecture '
+                    . 'by email at <a href="mailto:%2">%2</a> or via <a href="%3" target="_blank">chat</a>.',
+                    $block->escapeUrl($block->getUrl('contact')),
+                    $block->escapeHtml('support@fintecture.com'),
+                    $block->escapeUrl('https://help.fintecture.com')
+                ) ?>
+            </p>
         </div>
     <?php endif ?>
 <?php endif ?>

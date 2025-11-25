@@ -5,13 +5,12 @@ declare(strict_types=1);
 use Fintecture\Payment\Block\System\Config\Button;
 
 /** @var Button $block */
-echo $block->getButtonHtml();
-?>
+?><?= /* @noEscape */ $block->getButtonHtml() ?>
 <div id="connection-test-result" class="message">
     <span class="message-text">
         <strong></strong>
     </span>
 </div>
 <script>
-    const connectionTestUrl = '<?php echo $block->getCustomUrl(); ?>';
+    const connectionTestUrl = '<?= $block->escapeJs($block->getCustomUrl()) ?>';
 </script>

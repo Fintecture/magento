@@ -3,12 +3,25 @@
 ?>
 <?php if ($block->getPaymentStatus() === 'payment_created'): ?>
     <div class="fintecture-alert fintecture-alert-success">
-        <img src="<?php echo $block->getViewFileUrl('Fintecture_Payment::images/success.svg'); ?>">
-        <p><?php echo __('Your payment with Fintecture has been successfully processed!'); ?></p>
+        <img src="<?= $block->escapeUrl(
+            $block->getViewFileUrl('Fintecture_Payment::images/success.svg')
+        ) ?>">
+        <p>
+            <?= $block->escapeHtml(__(
+                'Your payment with Fintecture has been successfully processed!'
+            )) ?>
+        </p>
     </div>
 <?php elseif ($block->getPaymentStatus() === 'payment_pending'): ?>
     <div class="fintecture-alert fintecture-alert-info">
-        <img src="<?php echo $block->getViewFileUrl('Fintecture_Payment::images/info.svg'); ?>">
-        <p><?php echo __('Your payment with Fintecture is currently being processed by your bank. You can track the status of your payment using the link provided in the confirmation email.'); ?></p>
+        <img src="<?= $block->escapeUrl(
+            $block->getViewFileUrl('Fintecture_Payment::images/info.svg')
+        ) ?>">
+        <p>
+            <?= $block->escapeHtml(__(
+                'Your payment with Fintecture is currently being processed by your bank. '
+                . 'You can track the status of your payment using the link provided in the confirmation email.'
+            )) ?>
+        </p>
     </div>
 <?php endif; ?>
