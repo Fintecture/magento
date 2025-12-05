@@ -1,58 +1,61 @@
 {
-    "name": "fintecture/payment",
-    "description": "Fintecture Payment",
-    "keywords": ["payment","bank"],
-    "homepage": "https://github.com/Fintecture/magento",
-    "support": {
-        "email": "contact@fintecture.com"
-    },
-    "type": "magento2-module",
-    "version": "3.5.5",
-    "license": [
-        "GPL-3.0"
-    ],
-    "require": {
-        "php": ">=7.2",
-        "ext-json": "*",
-        "ext-openssl": "*",
-        "magento/framework": ">=100",
-        "magento/module-developer": ">=100",
-        "magento/module-payment": ">=100",
-        "magento/module-checkout": ">=100",
-        "magento/module-sales": ">=100",
-        "fintecture/fintecture-sdk-php": "^2.3",
-        "symfony/http-client": "*",
-        "nyholm/psr7": "*"
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^1",
-        "bitexpert/phpstan-magento": "^0.30.0",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/extension-installer": "^1.1",
-        "phpunit/phpunit": "*"
-    },
-    "suggest": {
-        "chillerlan/php-qrcode": "QR Code library for payment with \"Login as Customer\" feature enabled"
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://repo.magento.com/"
-        }
-    ],
-    "autoload": {
-        "files": [
-            "registration.php"
-        ],
-        "psr-4": {
-            "Fintecture\\Payment\\": "."
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "magento/composer-dependency-version-audit-plugin": true,
-            "phpstan/extension-installer": true,
-            "php-http/discovery": true
-        }
+  "name": "fintecture/payment",
+  "description": "Fintecture Payer par Banque (Pay by Bank) enables users to pay securely and directly from their bank account.",
+  "keywords": [
+    "payment",
+    "bank"
+  ],
+  "homepage": "https://github.com/Fintecture/magento",
+  "support": {
+    "email": "contact@fintecture.com"
+  },
+  "type": "magento2-module",
+  "version": "3.6.0",
+  "license": [
+    "GPL-3.0"
+  ],
+  "require": {
+    "php": ">=7.2",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "magento/framework": "^102.0 || ^103.0",
+    "magento/module-developer": ">=100",
+    "magento/module-payment": ">=100",
+    "magento/module-checkout": ">=100",
+    "magento/module-sales": ">=100",
+    "symfony/http-client": "*",
+    "nyholm/psr7": "*",
+    "fintecture/fintecture-sdk-php": "^2.3"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^1",
+    "bitexpert/phpstan-magento": "^0.30.0",
+    "phpstan/phpstan-deprecation-rules": "^1.0",
+    "phpstan/extension-installer": "^1.1",
+    "phpunit/phpunit": "*"
+  },
+  "suggest": {
+    "chillerlan/php-qrcode": "QR Code library for payment with \"Login as Customer\" feature enabled"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://repo.magento.com/"
     }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Fintecture\\Payment\\": "."
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "magento/composer-dependency-version-audit-plugin": true,
+      "phpstan/extension-installer": true,
+      "php-http/discovery": true
+    }
+  }
 }

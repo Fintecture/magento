@@ -4,39 +4,52 @@
 <div style="text-align: center;">
     <?php
     if ($block->getData('step') !== 2) {
-    ?>
-        <h2><?php echo __('Choose how to send your payment link'); ?></h2>
+        ?>
+        <h2><?= $block->escapeHtml(__('Choose how to send your payment link')) ?></h2>
 
-        <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px;">
-            <a href="<?php echo $block->getData('sendByEmailUrl'); ?>" class="action primary">
-                <?php echo __('Send by Email'); ?>
+        <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;
+                    gap: 10px;">
+            <a href="<?= $block->escapeUrl($block->getData('sendByEmailUrl')) ?>" class="action primary">
+                <?= $block->escapeHtml(__('Send by Email')) ?>
             </a>
-            <a href="<?php echo $block->getData('sendBySMSUrl'); ?>" class="action primary">
-                <?php echo __('Send by SMS'); ?>
+            <a href="<?= $block->escapeUrl($block->getData('sendBySMSUrl')) ?>" class="action primary">
+                <?= $block->escapeHtml(__('Send by SMS')) ?>
             </a>
         </div>
         <?php
     } else {
-    ?>
-        <h2><?php echo __('Your payment link has been sent successfully'); ?></h2>
+        ?>
+        <h2><?= $block->escapeHtml(__('Your payment link has been sent successfully')) ?></h2>
 
-        <img src="<?php echo $block->getData('qrCode'); ?>">
+        <img src="<?= $block->escapeUrl($block->getData('qrCode')) ?>">
 
-        <p><b><?php echo $block->getData('amount'); ?> <?php echo $block->getData('currency'); ?></b></p>
-        <p><?php echo $block->getData('reference'); ?></p>
-        <p><?php echo $block->getData('sessionId'); ?></p>
+        <p>
+            <b>
+                <?= $block->escapeHtml($block->getData('amount')) ?>
+                <?= $block->escapeHtml($block->getData('currency')) ?>
+            </b>
+        </p>
+        <p><?= $block->escapeHtml($block->getData('reference')) ?></p>
+        <p><?= $block->escapeHtml($block->getData('sessionId')) ?></p>
 
-        <a href="<?php echo $block->getData('baseUrl'); ?>" class="action primary" style="margin-top: 20px;">
-            <?php echo __('Return to the homepage'); ?>
+        <a href="<?= $block->escapeUrl($block->getData('baseUrl')) ?>"
+           class="action primary"
+           style="margin-top: 20px;">
+            <?= $block->escapeHtml(__('Return to the homepage')) ?>
         </a>
-    <?php
+        <?php
     }
     ?>
 
-    <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
+    <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;
+                justify-content: center; gap: 8px;">
         <span style="text-transform: uppercase; color: #0B1643; font-weight: bold; font-size: 0.8em;">
-            <?php echo __('Secured connection to your bank by'); ?>
+            <?= $block->escapeHtml(__('Secured connection to your bank by')) ?>
         </span>
-        <img src="<?php echo $block->getViewFileUrl('Fintecture_Payment::images/fintecture.svg'); ?>" alt="Fintecture" style="height: 25px;">
+        <img src="<?= $block->escapeUrl(
+            $block->getViewFileUrl('Fintecture_Payment::images/fintecture.svg')
+        ) ?>"
+             alt="Fintecture"
+             style="height: 25px;">
     </div>
 </div>

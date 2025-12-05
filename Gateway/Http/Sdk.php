@@ -85,32 +85,44 @@ class Sdk
      */
     public function getPaymentMethods()
     {
+        if (!$this->isPisClientInstantiated()) {
+            $this->fintectureLogger->warning('SDK not initialized; skip payment methods');
+
+            return false;
+        }
+
         $hasPaymentMethodsInCache = $this->operateCustomCache->get('payment_methods');
         if (!is_null($hasPaymentMethodsInCache)) {
             return $hasPaymentMethodsInCache;
         }
 
-        $pisToken = $this->pisClient->token->generate();
-        if (!$pisToken->error) {
-            $this->pisClient->setAccessToken($pisToken); // set token of PIS client
-        } else {
-            throw new \Exception($pisToken->errorMsg);
-        }
-
-        $apiResponse = $this->pisClient->application->get(['with_payment_methods' => true]);
-        if (!$apiResponse->error) {
-            $paymentMethods = [];
-            if (isset($apiResponse->result->data->attributes->payment_methods)) {
-                foreach ($apiResponse->result->data->attributes->payment_methods as $paymentMethod) {
-                    $paymentMethods[] = $paymentMethod->id;
-                }
-
-                $this->operateCustomCache->save('payment_methods', $paymentMethods, 600);
-
-                return $paymentMethods;
+        try {
+            $pisToken = $this->pisClient->token->generate();
+            if (!$pisToken->error) {
+                $this->pisClient->setAccessToken($pisToken); // set token of PIS client
+            } else {
+                throw new \Exception($pisToken->errorMsg);
             }
-        }
 
-        return false;
+            $apiResponse = $this->pisClient->application->get(['with_payment_methods' => true]);
+            if (!$apiResponse->error) {
+                $paymentMethods = [];
+                if (isset($apiResponse->result->data->attributes->payment_methods)) {
+                    foreach ($apiResponse->result->data->attributes->payment_methods as $paymentMethod) {
+                        $paymentMethods[] = $paymentMethod->id;
+                    }
+
+                    $this->operateCustomCache->save('payment_methods', $paymentMethods, 600);
+
+                    return $paymentMethods;
+                }
+            }
+
+            return false;
+        } catch (\Exception $e) {
+            $this->fintectureLogger->error('getPaymentMethods exception', ['exception' => $e]);
+
+            return false;
+        }
     }
 }

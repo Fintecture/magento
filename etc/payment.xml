@@ -2,16 +2,8 @@
 
 <payment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payment:etc/payment.xsd">
-    <groups>
-        <group id="fintecture_group">
-            <label>Fintecture</label>
-        </group>
-    </groups>
     <methods>
         <method name="fintecture">
-            <allow_multiple_address>1</allow_multiple_address>
-        </method>
-        <method name="fintecture_bnpl">
             <allow_multiple_address>1</allow_multiple_address>
         </method>
     </methods>

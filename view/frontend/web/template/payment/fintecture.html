@@ -12,7 +12,7 @@
             <!-- /ko -->
 
             <!-- ko if: getCheckoutDesign() === 'ist_short' -->
-            <span data-bind="i18n: 'Wire transfer'"></span>
+            <span data-bind="i18n: 'Secured wire transfer'"></span>
             <!-- /ko -->
         </label>
         <!-- ko if: isRecommendedItBadgeActive() -->
@@ -36,11 +36,11 @@
                 <span data-bind="i18n: 'Choose to pay by'"></span>
                 <span><b data-bind="i18n: 'traditional bank transfer'"></b></span>
                 <span data-bind="i18n: 'or by'"></span>
-                <span><b data-bind="i18n: 'immediate transfer'"></b>,</span>
+                <span><b data-bind="i18n: 'Immediate Transfer'"></b>,</span>
                 <span data-bind="i18n: ' for an express payment of your purchases.'"></span>
             </p>
 
-            <p id="f-howto" data-bind="i18n: 'How to make an immediate transfer?'"></p>
+            <p id="f-howto" data-bind="i18n: 'How to make an Immediate Transfer?'"></p>
             <!-- /ko -->
 
             <!-- ko if: getCheckoutDesign() !== 'ist_short' -->
@@ -49,25 +49,25 @@
                     <div class="f-step-icon f-step-1-icon">
                         <div class="f-step-img f-step-1-img"></div>
                     </div>
-                    <p data-bind="i18n: 'Select your bank'"></p>
+                    1. <p data-bind="i18n: 'Select your bank'"></p>
                 </div>
                 <div class="f-step-wrapper">
                     <div class="f-step-icon f-step-2-icon">
                         <div class="f-step-img f-step-2-img"></div>
                     </div>
-                    <p data-bind="i18n: 'Login with your usual banking ID\'s'"></p>
+                    2. <p data-bind="i18n: 'Login with your usual banking ID\'s'"></p>
                 </div>
                 <div class="f-step-wrapper">
                     <div class="f-step-icon f-step-3-icon">
                         <div class="f-step-img f-step-3-img"></div>
                     </div>
-                    <p data-bind="i18n: 'Confirm your payment securely'"></p>
+                    3. <p data-bind="i18n: 'Confirm your payment securely'"></p>
                 </div>
                 <div class="f-step-wrapper">
                     <div class="f-step-icon f-step-4-icon">
                         <div class="f-step-img f-step-4-img"></div>
                     </div>
-                    <p data-bind="i18n: 'Your purchase is confirmed!'"></p>
+                    4. <p data-bind="i18n: 'Your purchase is confirmed!'"></p>
                 </div>
             </div>
             <!-- /ko -->

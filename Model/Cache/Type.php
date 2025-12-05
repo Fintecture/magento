@@ -6,8 +6,8 @@ namespace Fintecture\Payment\Model\Cache;
 
 class Type extends \Magento\Framework\Cache\Frontend\Decorator\TagScope
 {
-    const TYPE_IDENTIFIER = 'fintecture_cache';
-    const CACHE_TAG = 'FINTECTURE_CACHE';
+    public const TYPE_IDENTIFIER = 'fintecture_cache';
+    public const CACHE_TAG = 'FINTECTURE_CACHE';
 
     /**
      * @param \Magento\Framework\App\Cache\Type\FrontendPool $cacheFrontendPool
