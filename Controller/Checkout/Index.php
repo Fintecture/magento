@@ -43,9 +43,9 @@ class Index extends FintectureAbstract
 
             if ($url) {
                 return $this->resultRedirect->create()->setPath($url);
-            } else {
-                throw new \Exception('No url');
             }
+
+            throw new \Exception('No url');
         } catch (\Exception $e) {
             $this->fintectureLogger->error('Checkout', [
                 'message' => 'Error building redirect URL',
