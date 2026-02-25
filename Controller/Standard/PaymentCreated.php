@@ -82,9 +82,9 @@ class PaymentCreated extends WebhookAbstract
                 }
 
                 return $this->refund($order, $params['status'], (float) $params['amount']);
-            } else {
-                return $this->payment($order, $params);
             }
+
+            return $this->payment($order, $params);
         } catch (LocalizedException $e) {
             $this->fintectureLogger->error('Webhook', ['exception' => $e]);
             $result->setHttpResponseCode(500);

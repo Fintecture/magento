@@ -28,9 +28,9 @@ class Bnpl extends FintectureAbstract
 
             if ($url) {
                 return $this->resultRedirect->create()->setPath($url);
-            } else {
-                throw new \Exception('No url');
             }
+
+            throw new \Exception('No url');
         } catch (\Exception $e) {
             $this->fintectureLogger->error('Checkout BNPL', [
                 'message' => 'Error building redirect URL',
