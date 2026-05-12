@@ -26,7 +26,6 @@
                 <fintecture_app_secret_production backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
                 <new_order_status>pending</new_order_status>
                 <payment_created_status>processing</payment_created_status>
-                <order_created_status>fintecture_order_created</order_created_status>
                 <payment_pending_status>pending_payment</payment_pending_status>
                 <payment_overpaid_status>fintecture_overpaid</payment_overpaid_status>
                 <payment_partial_status>fintecture_partial</payment_partial_status>

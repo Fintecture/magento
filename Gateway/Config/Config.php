@@ -7,7 +7,7 @@ use Magento\Payment\Gateway\Config\Config as BaseConfig;
 class Config extends BaseConfig
 {
     public const CODE = 'fintecture';
-    public const VERSION = '3.6.2';
+    public const VERSION = '3.7.0';
 
     public const KEY_SHOP_NAME = 'general/store_information/name';
     public const KEY_ACTIVE = 'active';
@@ -180,16 +180,6 @@ class Config extends BaseConfig
         $status = $this->getValue('payment_created_status');
         if (!$status) {
             $status = 'processing';
-        }
-
-        return $status;
-    }
-
-    public function getOrderCreatedStatus(): string
-    {
-        $status = $this->getValue('order_created_status');
-        if (!$status) {
-            $status = 'fintecture_order_created';
         }
 
         return $status;
