@@ -46,6 +46,16 @@ class Response extends FintectureAbstract
                 return $this->redirectToCheckoutWithError();
             }
 
+            if ($order->getExtOrderId() !== $sessionId) {
+                $this->fintectureLogger->error('Response', [
+                    'message' => 'Session does not belong to the order',
+                    'orderIncrementId' => $order->getIncrementId(),
+                    'sessionId' => $sessionId,
+                ]);
+
+                return $this->redirectToCheckoutWithError();
+            }
+
             $pisToken = $this->sdk->pisClient->token->generate();
             if (!$pisToken->error) {
                 $this->sdk->pisClient->setAccessToken($pisToken); // set token of PIS client

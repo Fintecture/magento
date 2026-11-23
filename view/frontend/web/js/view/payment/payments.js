@@ -7,10 +7,6 @@ define([
         {
             type: 'fintecture',
             component: 'Fintecture_Payment/js/view/payment/method-renderer/fintecture-payment',
-        },
-        {
-            type: 'fintecture_bnpl',
-            component: 'Fintecture_Payment/js/view/payment/method-renderer/fintecture-bnpl',
         }
     );
     return Component.extend({});

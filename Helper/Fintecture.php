@@ -26,10 +26,8 @@ class Fintecture extends AbstractHelper
     private const PAYMENT_COMMUNICATION = 'FINTECTURE-';
 
     public const PIS_TYPE = 'PayByBank';
-    public const RTP_TYPE = 'RequestToPay';
-    public const BNPL_TYPE = 'BuyNowPayLater';
 
-    public const BNPL_PAYMENT_METHOD = 'bnpl';
+    public const RTP_TYPE = 'RequestToPay';
 
     /** @var Config */
     protected $config;
@@ -199,10 +197,6 @@ class Fintecture extends AbstractHelper
                 'status' => $this->config->getPaymentCreatedStatus(),
                 'state' => Order::STATE_PROCESSING,
             ],
-            'order_created' => [
-                'status' => $this->config->getOrderCreatedStatus(),
-                'state' => Order::STATE_PROCESSING,
-            ],
             'payment_pending' => [
                 'status' => $this->config->getPaymentPendingStatus(),
                 'state' => Order::STATE_PENDING_PAYMENT,
@@ -260,7 +254,6 @@ class Fintecture extends AbstractHelper
         // Mapping by payment_status
         $notesMapping = [
             'payment_created' => __('The payment has been validated by the bank.'),
-            'order_created' => __('The order is confirmed, you will receive the funds under 30 days.'),
             'payment_pending' => __('The bank is validating the payment.'),
             'payment_partial' => __('A partial payment has been made.'),
             'payment_unsuccessful' => __('The payment was rejected by either the payer or the bank.'),
@@ -337,10 +330,6 @@ class Fintecture extends AbstractHelper
         $baseGrandTotal = (float) $order->getBaseGrandTotal();
         $total = (string) round($baseGrandTotal, 2);
 
-        $baseTaxAmount = $order->getBaseTaxAmount();
-        $totalMinusTaxes = $baseGrandTotal - $baseTaxAmount;
-        $netTotal = (string) round($totalMinusTaxes, 2);
-
         $payload = [
             'meta' => [
                 'psu_name' => $name,
@@ -384,14 +373,6 @@ class Fintecture extends AbstractHelper
             $payload['meta']['method'] = $method;
         }
 
-        // BNPL
-        if ($type === Fintecture::BNPL_TYPE) {
-            $payload['meta']['payment_methods'][] = [
-                'id' => 'bnpl',
-            ];
-            $payload['data']['attributes']['net_amount'] = $netTotal;
-        }
-
         // Handle custom reconciliation field if enabled
         if ($this->config->isCustomReconciliationFieldActive() && $this->config->getCustomReconciliationField()) {
             $customReconciliationField = $this->config->getCustomReconciliationField();
@@ -404,16 +385,5 @@ class Fintecture extends AbstractHelper
         }
 
         return $payload;
-    }
-
-    public function isBnplAvailable(): bool
-    {
-        $paymentMethods = $this->sdk->getPaymentMethods();
-
-        if (!$paymentMethods) {
-            return false;
-        }
-
-        return in_array(self::BNPL_PAYMENT_METHOD, $paymentMethods);
     }
 }

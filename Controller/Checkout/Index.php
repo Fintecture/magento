@@ -34,7 +34,7 @@ class Index extends FintectureAbstract
                 // RTP
                 if ($alternativeMethod === 'send') {
                     // SMS/EMAIL
-                    $url = $this->getSendRedirect($order);
+                    $url = $this->getSendRedirect();
                 } else {
                     // QR CODE
                     $url = $this->getQRCodeRedirect($order);
@@ -75,9 +75,9 @@ class Index extends FintectureAbstract
         return $this->fintectureHelper->getQrCodeUrl() . '?' . http_build_query($params);
     }
 
-    private function getSendRedirect(Order $order): string
+    private function getSendRedirect(): string
     {
-        return $this->fintectureHelper->getSendUrl() . '?step=1&orderId=' . $order->getIncrementId();
+        return $this->fintectureHelper->getSendUrl() . '?step=1';
     }
 
     /**

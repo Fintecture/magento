@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+## [3.7.1] - 2026-11-23
+
+### Changed
+
+- Improved Spanish and French translations
+
+### Security
+
+- Payment return and payment request pages only act on the order and payment session of the current checkout
+
+## [3.7.0] - 2026-04-14
+
+### Removed
+
+- Buy Now Pay Later (BNPL) payment method
+
 ## [3.6.2] - 2026-02-26
 
 - Internal fixes
@@ -39,5 +57,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Mark invoices as made online and fix refunds
 - Layout fixes by @nenes25
 - Update translations
-
-## [Unreleased]

@@ -223,35 +223,6 @@ class HandlePayment
 
             $order->setIsCustomerNotified(true);
             $this->orderRepository->save($order);
-
-            if ($params['status'] === 'order_created') {
-                // Update invoice_reference field for BNPL orders
-                $data = [
-                    'data' => [
-                        'attributes' => [
-                            'invoice_reference' => '#' . $invoice->getIncrementId(),
-                        ],
-                    ],
-                ];
-
-                $pisToken = $this->sdk->pisClient->token->generate();
-                if (!$pisToken->error) {
-                    $this->sdk->pisClient->setAccessToken($pisToken); // set token of PIS client
-                } else {
-                    $this->fintectureLogger->error("Can't update invoice_reference field", [
-                        'message' => $pisToken->errorMsg,
-                        'incrementOrderId' => $order->getIncrementId(),
-                    ]);
-                }
-
-                $apiResponse = $this->sdk->pisClient->payment->update($params['sessionId'], $data);
-                if ($apiResponse->error) {
-                    $this->fintectureLogger->error("Can't update invoice_reference field", [
-                        'message' => $apiResponse->errorMsg,
-                        'incrementOrderId' => $order->getIncrementId(),
-                    ]);
-                }
-            }
         }
     }
 

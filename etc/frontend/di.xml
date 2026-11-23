@@ -6,7 +6,6 @@ ObjectManager/etc/config.xsd">
         <arguments>
             <argument name="configProviders" xsi:type="array">
                 <item name="fintecture_config_provider" xsi:type="object">Fintecture\Payment\Model\Ui\ConfigProvider</item>
-                <item name="fintecture_bnpl_config_provider" xsi:type="object">Fintecture\Payment\Model\Ui\BnplConfigProvider</item>
             </argument>
         </arguments>
     </type>
