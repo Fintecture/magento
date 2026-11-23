@@ -162,36 +162,6 @@
     width: 25%;
 }
 
-#bnpl-box {
-    display: block;
-    width: 95%;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #f8f8f8;
-}
-
-.bnpl-head,
-.bnpl-body {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.bnpl-head span {
-    font-weight: bold;
-}
-
-.fintecture-badge {
-    background-color: #2a45a7;
-    padding: 2px 8px;
-    font-size: 12px;
-    border-radius: 13px;
-    color: #FFF;
-    font-weight: 700;
-    margin-left: 10px;
-}
-
 .checkout-index-index .payment-method .payment-method-title label.label.img_label:after {
     display: inline-block;
     vertical-align: middle;

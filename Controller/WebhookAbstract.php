@@ -50,7 +50,6 @@ abstract class WebhookAbstract implements CsrfAwareActionInterface
     protected const ALLOWED_WEBHOOK_TYPES = [
         'PayByBank',
         'Refund',
-        'BuyNowPayLater',
         'ManualTransfer',
         'RequestToPay',
     ];

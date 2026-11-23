@@ -10,7 +10,7 @@
     "email": "contact@fintecture.com"
   },
   "type": "magento2-module",
-  "version": "3.6.2",
+  "version": "3.7.1",
   "license": [
     "GPL-3.0"
   ],
@@ -49,6 +49,11 @@
     ],
     "psr-4": {
       "Fintecture\\Payment\\": "."
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Fintecture\\Tests\\": "tests/"
     }
   },
   "config": {

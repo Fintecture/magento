@@ -27,9 +27,6 @@
                                                                         <item name="fintecture" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="fintecture_bnpl" xsi:type="array">
-                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
-                                                                        </item>
                                                                     </item>
                                                                 </item>
                                                             </item>

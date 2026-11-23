@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Fintecture\Payment\Helper;
 
-use Fintecture\Payment\Gateway\Config\BnplConfig;
 use Fintecture\Payment\Gateway\Config\Config;
 use Fintecture\Payment\Logger\Logger as FintectureLogger;
 use Fintecture\Payment\Model\Environment;
@@ -17,9 +16,6 @@ class Stats
 {
     /** @var Config */
     protected $config;
-
-    /** @var BnplConfig */
-    protected $bnplConfig;
 
     /** @var FintectureLogger */
     protected $fintectureLogger;
@@ -38,7 +34,6 @@ class Stats
 
     public function __construct(
         Config $config,
-        BnplConfig $bnplConfig,
         FintectureLogger $fintectureLogger,
         ResourceConnection $resourceConnection,
         ProductMetadataInterface $productMetadata,
@@ -46,7 +41,6 @@ class Stats
         StoreManagerInterface $storeManager
     ) {
         $this->config = $config;
-        $this->bnplConfig = $bnplConfig;
         $this->fintectureLogger = $fintectureLogger;
         $this->resourceConnection = $resourceConnection;
         $this->productMetadata = $productMetadata;
@@ -105,7 +99,6 @@ class Stats
             'module_production_app_id' => $this->config->getAppId(Environment::ENVIRONMENT_PRODUCTION),
             'module_checkout_design' => $this->config->getCheckoutDesign(),
             'module_recommended_it' => $this->config->isRecommendedItBadgeActive(),
-            'module_recommended_bnpl' => $this->bnplConfig->isRecommendedBnplBadgeActive(),
             'module_force_position' => $this->config->isFirstPositionActive(),
             'module_force_position_min_amount' => $this->config->getFirstPositionAmount(),
         ];
